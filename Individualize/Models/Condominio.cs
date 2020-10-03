@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualBasic;
 
 namespace Individualize.Models
 {
@@ -17,5 +13,12 @@ namespace Individualize.Models
         public string CondominioDsc { get;set; }
         public DateTime PrecoDataIni { get; set; }
         public DateTime PrecoDataFim { get; set; }
+        public Boolean PrecoTaxaMinimaGas { get; set; }
+        public Boolean PrecoTaxaMinimaAgua { get; set; }
+
+        public int CondominioFornecedorGasId { get; set; }
+
+        public Fornecedor Fornecedor { get; set; }
+        
     }
 }

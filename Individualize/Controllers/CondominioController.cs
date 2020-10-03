@@ -19,6 +19,14 @@ namespace Individualize.Controllers
             return condominios;
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<List<Condominio>>> Get([FromServices] DataContext context)
+        {
+            var condominios = await context.Condominios.ToListAsync();
+            return condominios;
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<Condominio>> Post(

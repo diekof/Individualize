@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Individualize.Models;
 
 namespace Individualize.Data
@@ -17,5 +13,8 @@ namespace Individualize.Data
 
         public DbSet<Condominio> Condominios { get; set; }
         public DbSet<Medicao> Medicoes { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Fornecedor> Fornecedores { get; set; }
+
     }
 }
