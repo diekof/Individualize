@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Individualize-WebAPI", "Individualize\Individualize-WebAPI.csproj", "{07F85721-52B7-4878-A564-5DF2DD0BFCE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Individualize-Web", "Individualize-Web\Individualize-Web.csproj", "{1FB779A3-ECB5-44F3-AE65-4C0135094AAF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{07F85721-52B7-4878-A564-5DF2DD0BFCE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07F85721-52B7-4878-A564-5DF2DD0BFCE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07F85721-52B7-4878-A564-5DF2DD0BFCE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FB779A3-ECB5-44F3-AE65-4C0135094AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FB779A3-ECB5-44F3-AE65-4C0135094AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FB779A3-ECB5-44F3-AE65-4C0135094AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FB779A3-ECB5-44F3-AE65-4C0135094AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
