@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>f291cac7-8e6f-41f9-a4e6-89ffd39a73e9</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>Individualize-WebAPI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

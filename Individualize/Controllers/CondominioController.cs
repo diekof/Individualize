@@ -21,10 +21,12 @@ namespace Individualize.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<ActionResult<List<Condominio>>> Get([FromServices] DataContext context)
+        public async Task<ActionResult<Condominio>> GetById([FromServices] DataContext context, int CondominioId)
         {
-            var condominios = await context.Condominios.ToListAsync();
-            return condominios;
+            var condominio = await context.Condominios.Include(x => x.Fornecedor)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.CondominioId == CondominioId);
+            return condominio;
         }
 
         [HttpPost]
