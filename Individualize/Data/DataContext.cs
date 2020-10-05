@@ -11,7 +11,7 @@ namespace Individualize.Data
 
         }
 
-        public DbSet<Condominio> Condominios { get; set; }
+        public DbSet<Condominio> Condominio { get; set; }
         public DbSet<Medicao> Medicoes { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }

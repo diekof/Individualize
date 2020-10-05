@@ -27,7 +27,8 @@ namespace Individualize
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer("Password=123456;Persist Security Info=True;User ID=sa;Initial Catalog=individualize;Data Source=localhost")); 
+            // opt.UseInMemoryDatabase("Database"));
             services.AddScoped<DataContext, DataContext>();
             services.AddControllers();
         }
