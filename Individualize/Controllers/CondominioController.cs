@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Individualize.Data;
 using Individualize.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Individualize.Controllers
 {
     [ApiController]
     [Route("v1/condominios")]
-    public class CondominioController : ControllerBase
+    [Authorize]
+    public class CondominioController : ControllerBase 
     {
         [HttpGet]
         [Route("")]

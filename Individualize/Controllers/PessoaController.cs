@@ -15,7 +15,7 @@ namespace Individualize.Controllers
         [Route("")]
         public async Task<ActionResult<List<Pessoa>>> Get([FromServices] DataContext context)
         {
-            var pessoas = await context.Pessoas.ToListAsync();
+            var pessoas = await context.Pessoa.ToListAsync();
             return pessoas;
         }
 
@@ -27,7 +27,7 @@ namespace Individualize.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Pessoas.Add(model);
+                context.Pessoa.Add(model);
                 await context.SaveChangesAsync();
                 return model;
             }
