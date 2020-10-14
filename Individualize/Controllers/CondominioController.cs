@@ -1,61 +1,113 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Individualize.Data;
 using Individualize.Models;
+using Individualize.Services.Commons;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Individualize.Controllers
 {
+    [Route("v1/condominio")]
     [ApiController]
-    [Route("v1/condominios")]
     [Authorize]
-    public class CondominioController : ControllerBase 
+    public class CondominioController : ControllerBase
     {
-        [HttpGet]
-        [Route("")]
-        public async Task<ActionResult<List<Condominio>>> Get([FromServices] DataContext context)
+        private readonly DataContext _context;
+
+        public CondominioController(DataContext context)
         {
-            var condominios = await context.Condominio.ToListAsync();
-            return condominios;
+            _context = context;
         }
 
-        // [HttpGet]
-        // [Route("{id:int}")]
-        // public async Task<ActionResult<Condominio>> GetById([FromServices] DataContext context, int CondominioId)
-        // {
-        //     var condominio = await context.Condominios.Include(x => x.Fornecedor)
-        //         .AsNoTracking()
-        //         .FirstOrDefaultAsync(x => x.CondominioId == CondominioId);
-        //     return condominio;
-        // }
+        // GET: api/Condominio
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Condominio>>> GetCondominio()
+        {
+            return await _context.Condominio.ToListAsync();
+        }
 
-        // [HttpPost]
-        // [Route("")]
-        // public async Task<ActionResult<Condominio>> Post(
-        //     [FromServices] DataContext context,
-        //     [FromBody]Condominio model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         context.Condominios.Add(model);
-        //         await context.SaveChangesAsync();
-        //         return model;
-        //     }
-        //     else
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
-        // }
+        // GET: api/Condominio/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Condominio>> GetCondominio(short id)
+        {
+            var condominio = await _context.Condominio.FindAsync(id);
 
-        // [HttpDelete]
-        // [Route("{id:int")]
-        // public async Task<ActionResult<Condominio>> Del([FromServices] DataContext context, int CondominioId)
-        // {
-        //     context.Condominios.Remove.
+            if (condominio == null)
+            {
+                return NotFound();
+            }
 
-        // }
+            return condominio;
+        }
+
+        // PUT: api/Condominio/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCondominio(short id, Condominio condominio)
+        {
+            if (id != condominio.CondominioId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(condominio).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CondominioExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Condominio
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost]
+        public async Task<ActionResult<Condominio>> PostCondominio(Condominio condominio)
+        {
+            _context.Condominio.Add(condominio);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetCondominio", new { id = condominio.CondominioId }, condominio);
+        }
+
+        // DELETE: api/Condominio/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Condominio>> DeleteCondominio(short id)
+        {
+            var condominio = await _context.Condominio.FindAsync(id);
+            if (condominio == null)
+            {
+                return NotFound();
+            }
+
+            _context.Condominio.Remove(condominio);
+            await _context.SaveChangesAsync();
+
+            return condominio;
+        }
+
+        private bool CondominioExists(short id)
+        {
+            return _context.Condominio.Any(e => e.CondominioId == id);
+        }
     }
-
 }

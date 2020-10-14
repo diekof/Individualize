@@ -11,6 +11,7 @@ namespace Individualize.Models
         }
 
         public short PaisId { get; set; }
+
         public string PaisDsc { get; set; }
 
         public virtual ICollection<Estado> Estado { get; set; }

@@ -1,0 +1,60 @@
+<div *ngIf="professorSelecionado">
+  <div class="row">
+    <div class="mr-auto">
+      <app-titulo [titulo]="'Professor: '+ professorSelecionado.id"></app-titulo>
+    </div>
+    <div class="mt-1">
+      <button class="btn btn-warning" (click)="voltar()">Voltar</button>
+    </div>
+  </div>   
+
+  <div class="row">
+    <div class="col">
+      <form [formGroup]='professorForm' (submit)="professorSubmit()">
+        <div class="form-group">
+          <label for="formGroupExampleInput">Nome</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" 
+          placeholder="Nome" formControlName="nome">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Sobrenome</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2" 
+          placeholder="Sobrenome" formControlName="disciplina">
+        </div>
+        <div class="form-group">
+          <hr>
+          <button class="btn btn-success" [disabled]="!professorForm.valid">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div> 
+</div>
+<div *ngIf="!professorSelecionado">
+  <app-titulo [titulo]="titulo"></app-titulo>
+
+  <div class="row">
+    <div class="col">
+  
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Disciplina</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let professor of professores" 
+          (click)="professorSelect(professor)">
+            <td scope="row">{{professor.id}}</td>
+            <td>{{professor.nome}}</td>
+            <td>{{professor.disciplina}}</td>
+          </tr>        
+        </tbody>
+      </table>
+  
+    </div>
+  </div>
+</div>
+
+

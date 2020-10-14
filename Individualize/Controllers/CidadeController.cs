@@ -1,61 +1,62 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Individualize.Data;
 using Individualize.Models;
+using Individualize.Services.Commons;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace Individualize_WebAPI.Controllers
+
+namespace Individualize.Controllers
 {
-    [Route("v1/pais")]
+    [Route("v1/cidade")]
     [ApiController]
     [Authorize]
-    public class PaisController : ControllerBase
+    public class CidadeController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public PaisController(DataContext context)
+        public CidadeController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Pais
+        // GET: api/Cidade
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pais>>> GetPais()
+        public async Task<ActionResult<IEnumerable<Cidade>>> GetCidade()
         {
-            return await _context.Pais.ToListAsync();
+            return await _context.Cidade.ToListAsync();
         }
 
-        // GET: api/Pais/5
+        // GET: api/Cidade/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pais>> GetPais(short id)
+        public async Task<ActionResult<Cidade>> GetCidade(int id)
         {
-            var pais = await _context.Pais.FindAsync(id);
+            var cidade = await _context.Cidade.FindAsync(id);
 
-            if (pais == null)
+            if (cidade == null)
             {
                 return NotFound();
             }
 
-            return pais;
+            return cidade;
         }
 
-        // PUT: api/Pais/5
+        // PUT: api/Cidade/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPais(short id, Pais pais)
+        public async Task<IActionResult> PutCidade(int id, Cidade cidade)
         {
-            if (id != pais.PaisId)
+            if (id != cidade.CidadeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pais).State = EntityState.Modified;
+            _context.Entry(cidade).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +64,7 @@ namespace Individualize_WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PaisExists(id))
+                if (!CidadeExists(id))
                 {
                     return NotFound();
                 }
@@ -76,37 +77,37 @@ namespace Individualize_WebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Pais
+        // POST: api/Cidade
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Pais>> PostPais(Pais pais)
+        public async Task<ActionResult<Cidade>> PostCidade(Cidade cidade)
         {
-            _context.Pais.Add(pais);
+            _context.Cidade.Add(cidade);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPais", new { id = pais.PaisId }, pais);
+            return CreatedAtAction("GetCidade", new { id = cidade.CidadeId }, cidade);
         }
 
-        // DELETE: api/Pais/5
+        // DELETE: api/Cidade/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Pais>> DeletePais(short id)
+        public async Task<ActionResult<Cidade>> DeleteCidade(int id)
         {
-            var pais = await _context.Pais.FindAsync(id);
-            if (pais == null)
+            var cidade = await _context.Cidade.FindAsync(id);
+            if (cidade == null)
             {
                 return NotFound();
             }
 
-            _context.Pais.Remove(pais);
+            _context.Cidade.Remove(cidade);
             await _context.SaveChangesAsync();
 
-            return pais;
+            return cidade;
         }
 
-        private bool PaisExists(short id)
+        private bool CidadeExists(int id)
         {
-            return _context.Pais.Any(e => e.PaisId == id);
+            return _context.Cidade.Any(e => e.CidadeId == id);
         }
     }
 }
