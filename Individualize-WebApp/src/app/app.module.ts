@@ -8,6 +8,9 @@ import { AlunosComponent } from './view/alunos/alunos.component';
 import { ProfessoresComponent } from './view/professores/professores.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { PaisComponent } from './view/cadastro/endereco/pais/pais.component';
+import { AuthLoginComponent } from './view/auth-login/auth-login.component';
+import { SampleGuard } from './guards/sample.guard';
+import { MasterComponent } from './view/master/master.component';
 
 import { NavComponent } from './componentes/nav/nav.component';
 import { TituloComponent } from './componentes/titulo/titulo.component';
@@ -26,7 +29,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       DashboardComponent,
       PaisComponent,
       NavComponent,
-      TituloComponent
+      TituloComponent,
+      MasterComponent,
+      AuthLoginComponent
    ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    SampleGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

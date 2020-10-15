@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from  '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
   public titulo = 'Dashboard';
-  constructor() { }
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    const par = this.activatedRoute.snapshot.paramMap.get('parametro');
+    console.log(par);
   }
+
+  // goToLogin(){
+  //   this.router.navigate(['/login']);
+  // }
 
 }

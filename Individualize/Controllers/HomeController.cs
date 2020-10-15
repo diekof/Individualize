@@ -19,7 +19,7 @@ namespace Individualize.Controllers
             var user = UserRepository.Get(model.UsuarioLogin, model.UsuarioSenha);
 
             if (user == null)
-                return NotFound(new { message = "Usuário ou senha inválidos" });
+                return new { message = "Usuário ou senha inválidos" };
 
             var token = TokenService.GenerateToken(user);
             user.UsuarioSenha = "";

@@ -27,7 +27,17 @@ namespace Individualize
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("gestao_comercial")));
             services.AddScoped<DataContext, DataContext>();
 
-            services.AddCors();
+            // services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200",
+                            "http://localhost:5000")
+                                .WithMethods("PUT", "DELETE", "GET", "POST");
+                    });
+            });
             services.AddControllers();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
@@ -59,9 +69,11 @@ namespace Individualize
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // app.UseCors();
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
